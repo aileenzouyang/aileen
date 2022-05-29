@@ -1,1 +1,1 @@
-web:gunicorn aileen.wsgi
+web: gunicorn aileen.wsgi
