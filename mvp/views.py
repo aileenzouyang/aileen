@@ -9,7 +9,7 @@ def home(request):
     return render(request, 'homepage.html')
 
 def upload(request):
-    return render(request, 'upload.html', {'name':"Aileen"})
+    return render(request, 'upload.html', {'name':"there"})
 
 def load(request):
     #print(request.method)

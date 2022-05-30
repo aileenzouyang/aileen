@@ -51,7 +51,7 @@
   
   #customers td, #customers th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 5px;
   }
   
   #customers tr:nth-child(even){background-color: #f2f2f2;}
@@ -61,8 +61,8 @@
   #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
+    text-align: middle;
+    background-color: #4578e6;
     color: white;
   }
 </style>
@@ -75,8 +75,8 @@
   /* Create two unequal columns that floats next to each other */
   .column {
     float: left;
-    padding: 10px;
-    height: 600px; /* Should be removed. Only for demonstration */
+    padding: 5px;
+    height: 900px; /* Should be removed. Only for demonstration */
   }
   
   .left {
@@ -96,11 +96,12 @@
 </style>
 </head>
 <body>
-
+<br>
 <h2 class="text-center">Automated Code Generation</h2>  
+<br>
 <div class="row">
   <div class="column left">
-    <div class="container" style="height:500px;overflow:auto;">
+    <div class="container" style="height:800px;overflow:auto;">
       <!-- <table class="table table-dark table-striped">> -->
       <table id="customers">
         <thead>
@@ -126,7 +127,7 @@
       </table>
     </div>
   </div>
-  <div class="column right">
+  <div class="column right" style="padding: 20px">
 
     <form action="remove" method = "post">
       {% csrf_token %}
