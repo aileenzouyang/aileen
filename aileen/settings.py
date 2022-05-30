@@ -128,6 +128,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR, "static"]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
@@ -140,5 +141,13 @@ MEDIA_URL = '/files/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# email settings
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'flashscriptspython@gmail.com'
+EMAIL_HOST_PASSWORD = 'mvp1234Password'
+EMAIL_USE_TLS = True
+
 
 django_heroku.settings(locals())

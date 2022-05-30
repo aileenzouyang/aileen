@@ -3,10 +3,30 @@ import pandas as pd
 import json
 import os
 from django.core.files.storage import FileSystemStorage
+from django.core.mail import send_mail
 
 # Create your views here.
 def home(request):
     return render(request, 'homepage.html')
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        email = request.POST["email"]
+        message = request.POST['message']
+
+        # send email
+        send_mail(
+            "Message from " + name,
+            message,
+            email,
+            ['flashscriptspython@gmail.com'],
+            )
+
+        return_message = "Thank you, your message has been sent! "
+        return render(request, 'homepage.html',{'return_message':return_message})
+    else:
+        return render(request, 'homepage.html')
 
 def upload(request):
     return render(request, 'upload.html', {'name':"there"})
