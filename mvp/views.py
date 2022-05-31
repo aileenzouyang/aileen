@@ -52,7 +52,7 @@ def table(request):
         fs.save(uploaded_file.name,uploaded_file)
 
     #print(request.FILES['document'].name)
-    df = pd.read_csv(os.path.join(os.getcwd(),"files", request.FILES['document'].name))
+    df = pd.read_csv(os.path.join(os.getcwd(),"media", request.FILES['document'].name))
 
     # parsing the DataFrame in json format.
     json_records = df.reset_index().to_json(orient ='records')
