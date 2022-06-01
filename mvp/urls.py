@@ -8,8 +8,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('upload', views.upload, name='upload'),
     path('accounts/load', views.table, name='load'),
+    path('load', views.table, name='load'),
     path('contact', views.contact, name='contact'),
-    #path('load', views.test, name='load'),
     path('remove', views.remove, name='remove'),
     path('removecolumns', views.removecolumns, name='removecolumns')
 ]

@@ -4,6 +4,10 @@ import json
 import os
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
+import io
+import sys
+
+
 
 # Create your views here.
 def home(request):
@@ -137,6 +141,20 @@ def remove(request):
             #data = data[~(data["index"] == ind)]
             data = data.iloc[ind:]
         except: print("input not a valid index number")
+
+    if action == "customizedcode":
+        try:
+            # get index number to remove
+            customizedcode = request.POST["customizedcode"]
+            comment = request.POST["comment"]         
+            # update code
+            code = code + "# {}\n". format(comment)
+            #code = code + "df = df[~(df['index'] == {})] \n".format(ind)
+            code = code + "{}\n".format(customizedcode)
+            #execute
+            # figure out how to execute the script
+            
+        except: print("input not valid")
     
     if action == "dropna":
         try:
