@@ -11,6 +11,7 @@ urlpatterns = [
     path('load', views.table, name='load'),
     path('contact', views.contact, name='contact'),
     path('remove', views.remove, name='remove'),
+    path('evaluate', views.evaluate, name='evaluate'),
     path('removecolumns', views.removecolumns, name='removecolumns')
 ]
 

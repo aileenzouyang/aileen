@@ -73,9 +73,29 @@ def table(request):
                 'code':code,
                 'action':''}
 
-
     return render(request, 'table.html', context)
 
+def evaluate(request):
+    # get existing code
+    code = request.POST["code"]
+    data = request.POST["data"]
+    data = pd.DataFrame(list(eval(data)))
+
+    evaluation_message = "This dataset contains {} rows and {} columns".format(len(data),len(data.columns))
+
+    headers = data.columns
+    # parsing the DataFrame in json format.
+    json_records = data.reset_index().to_json(orient ='records')
+    json_records = data.to_json(orient ='records')
+    data = json.loads(json_records)
+
+    context = {'d': data, 
+                'headers': headers,
+                'code':code,
+                'action':'',
+                'evalutation_message':evaluation_message}
+
+    return render(request, "table.html", context)
 
 def remove(request):
 
@@ -125,6 +145,8 @@ def remove(request):
     code = request.POST["code"]
     # get selected action
     action = request.POST['selected_action']
+    #get evaluation message
+    evaluation_message = request.POST['evaluation_message']
     print(action)
     data = request.POST["data"]
     data = pd.DataFrame(list(eval(data)))
@@ -152,7 +174,18 @@ def remove(request):
             #code = code + "df = df[~(df['index'] == {})] \n".format(ind)
             code = code + "{}\n".format(customizedcode)
             #execute
-            # figure out how to execute the script
+            variables = {'data':data}
+            print('check point')
+        
+            customizedcode = "df = data;" + customizedcode.replace("df","data")
+            print('check point')
+            try: 
+                print('check point')
+                exec(customizedcode,variables)
+                print('check point')
+            except: print("not a valid customized command")
+            else: data = variables['df']
+
             
         except: print("input not valid")
     
@@ -202,7 +235,8 @@ def remove(request):
                 #'headers': list(data[0].keys()),
                 'headers': headers,
                 'code':code,
-                'action':action}
+                'action':action,
+                'evalutation_message':evaluation_message}
 
     return render(request, "table.html", context)
 

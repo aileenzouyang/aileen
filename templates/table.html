@@ -128,6 +128,15 @@
     </div>
   </div>
   <div class="column right" style="padding: 20px">
+    <form action="evaluate" method = "post">
+      {% csrf_token %}
+      <input type="hidden" id="code" name="code" value="{{ code }}">
+      <input type="hidden" id="data" name="data" value= "{{ d }}">
+      <input type="hidden" id="evaluation_message" name="evalutation_message" value= "{{ evaluation_message }}">
+      <input type="submit" value="Evaluate the Dataset">
+      <p>{{ evalutation_message }}</p>
+    </form>
+    <hr>
     <form action="remove" method = "post">
       {% csrf_token %}
 
@@ -204,6 +213,7 @@
       <pre><code class="python">
       {{ code }}
       </code></pre>
+      <input type="hidden" id="data" name="evaluation_message" value= "{{ evaluation_message }}">
       <input type="hidden" id="code" name="code" value="{{ code }}">
       <input type="hidden" id="data" name="data" value= "{{ d }}">
       <input type="submit">
